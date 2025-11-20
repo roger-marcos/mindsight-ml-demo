@@ -5,14 +5,17 @@ services:
     build: ./backend
     container_name: mindsight-backend
     ports:
-      - "8000:8000"
+      - "10000:10000"  # Expose backend on port 10000, as required by Render
 
   frontend:
     build: ./frontend
     container_name: mindsight-frontend
     environment:
-      - API_URL=http://backend:8000/predict
+      # For local development, you can set API_URL as the backend's local address.
+      # In production (on Render), this will be the Render URL for the backend.
+      - API_URL=http://mindsight-backend:10000/predict  # Change to match the backend's port
     ports:
-      - "8501:8501"
+      - "8501:8501"  # Expose Streamlit frontend on port 8501
     depends_on:
       - backend
+
