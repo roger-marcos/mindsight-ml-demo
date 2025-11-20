@@ -4,7 +4,8 @@ from PIL import Image
 import io
 
 # Backend URL
-API_URL = "http://localhost:8000/predict"
+#API_URL = "http://localhost:8000/predict"
+API_URL = "https://mindsight-ml-demo.onrender.com/predict"
 
 st.set_page_config(
     page_title="CIFAR-3 Image Classifier",
