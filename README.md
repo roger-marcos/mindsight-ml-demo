@@ -197,7 +197,7 @@ Typical Render deployment:
 5. Expose port 8000
 6. Once deployed, your API will be available at something like:
 
-/`https://<service-name>.onrender.com`
+`/https://mindsight-ml-demo.onrender.com`
 
 You can then update the frontend UI to point API_URL to this cloud endpoint.
 
