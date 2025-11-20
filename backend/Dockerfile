@@ -26,8 +26,8 @@ RUN pip install --no-cache-dir torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.
 COPY . .
 
 # 8) Expose port
-EXPOSE 8000
+EXPOSE 10000
 
-# 9) Start FastAPI server
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+# 9) Start FastAPI server (ensure it's running on port 10000)
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "10000"]
 
