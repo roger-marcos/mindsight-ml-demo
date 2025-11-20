@@ -90,8 +90,7 @@ This will:
 3. Fine-tune a pretrained ResNet18
 4. Save the best checkpoint to:
 
-backend/models/resnet18_cifar3_best.pt
-
+`/backend/models/resnet18_cifar3_best.pt`
 
 Training logs include:
 
