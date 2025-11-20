@@ -68,6 +68,10 @@ def predict_image_bytes(data: bytes) -> Tuple[str, Dict[str, float]]:
     model, device, test_transform = get_or_load_model()
 
     img = read_image_from_bytes(data)
+
+    # 🔴 CLAVE: forzar el mismo tamaño que CIFAR-10 (32x32)
+    img = img.resize((32, 32))
+    
     tensor = test_transform(img).unsqueeze(0).to(device)  # [1, 3, 32, 32]
 
     with torch.no_grad():
