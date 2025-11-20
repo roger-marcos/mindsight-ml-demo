@@ -1,6 +1,8 @@
 from typing import Dict, Tuple
 from pathlib import Path
 from io import BytesIO
+import os
+import gdown
 
 import torch
 import torch.nn.functional as F
@@ -17,6 +19,8 @@ _model = None
 _test_transform = None
 _class_names = TARGET_CLASSES
 
+MODEL_PATH = Path(ROOT_DIR) / "models" / "resnet18_cifar3_best.pt"
+
 
 def get_or_load_model():
     global _device, _model, _test_transform
@@ -28,12 +32,19 @@ def get_or_load_model():
         _, _test_transform = get_transforms()
 
     if _model is None:
-        model_path = Path(ROOT_DIR) / "models" / "resnet18_cifar3_best.pt"
-        if not model_path.exists():
-            raise FileNotFoundError(f"Model file not found at {model_path}. Train the model first.")
+        # Check if model file exists
+        if not MODEL_PATH.exists():
+            print(f"Model not found at {MODEL_PATH}. Downloading from Google Drive...")
+            # Google Drive direct download link
+            gdown.download("https://drive.google.com/uc?export=download&id=1IlVj9vJLsXV6teYzhEId58-tlxp4q3zw", str(MODEL_PATH), quiet=False)
+            print("Model downloaded successfully.")
+
+        # Load the model architecture
         num_classes = len(_class_names)
         model = build_model(num_classes=num_classes)
-        state_dict = torch.load(model_path, map_location=_device)
+
+        # Load the state dictionary (model weights)
+        state_dict = torch.load(MODEL_PATH, map_location=_device)
         model.load_state_dict(state_dict)
         model.to(_device)
         model.eval()
