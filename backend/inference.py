@@ -36,7 +36,7 @@ def get_or_load_model():
         if not MODEL_PATH.exists():
             print(f"Model not found at {MODEL_PATH}. Downloading from Google Drive...")
             # Google Drive direct download link
-            gdown.download("https://drive.google.com/uc?export=download&id=1IlVj9vJLsXV6teYzhEId58-tlxp4q3zw", str(MODEL_PATH), quiet=False)
+            gdown.download("https://drive.google.com/uc?export=download&id=1eKa9TB-e6YO4BZysFiHEEAf3tSvPrN8m", str(MODEL_PATH), quiet=False)
             print("Model downloaded successfully.")
 
         # Load the model architecture
