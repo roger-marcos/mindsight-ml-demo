@@ -13,7 +13,8 @@ services:
     environment:
       # For local development, you can set API_URL as the backend's local address.
       # In production (on Render), this will be the Render URL for the backend.
-      - API_URL=http://mindsight-backend:10000/predict  # Change to match the backend's port
+      - API_URL=https://mindsight-ml-demo.onrender.com/predict
+
     ports:
       - "8501:8501"  # Expose Streamlit frontend on port 8501
     depends_on:
